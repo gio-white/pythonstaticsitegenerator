@@ -7,7 +7,7 @@ import sys
 def main():
     basepath = sys.argv[0] if len(sys.argv) > 0 else "/"
     static_to_public()
-    generate_content("content")
+    generate_content("content", basepath)
 
 if __name__ == "__main__":
     main()
