@@ -5,7 +5,7 @@ import os
 import sys
 
 def main():
-    basepath = sys.argv[0] if len(sys.argv) > 0 else "/"
+    basepath = sys.argv[1] if len(sys.argv) > 1 else "/"
     static_to_public()
     generate_content("content", basepath)
 
