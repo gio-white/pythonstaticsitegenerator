@@ -14,7 +14,9 @@ def generate_page(from_path, template_path, dest_path):
     node = markdown_to_html_node(from_content)
     html = node.to_html()
     new_page = template.replace("{{ Title }}", title) \
-                       .replace("{{ Content }}", html)
+                       .replace("{{ Content }}", html) \
+                       .replace('href="/', 'href="{basepath}') \
+                       .replace('src="/', 'src="{basepath}')
     
     with open(dest_path, "w+") as file:
         file.write(new_page)
@@ -24,9 +26,9 @@ def generate_content(src_path):
     for item in os.listdir(src_path):
         item_path = os.path.join(src_path, item)
         if os.path.isfile(item_path):
-            dest_path = item_path.replace("content", "public", 1)\
+            dest_path = item_path.replace("content", "docs", 1)\
                                  .replace(".md", ".html", 1)
             generate_page(item_path, "template.html", dest_path)
         else:
-            os.mkdir(item_path.replace("content", "public", 1))
+            os.mkdir(item_path.replace("content", "docs", 1))
             generate_content(item_path) 

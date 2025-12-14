@@ -9,12 +9,12 @@ logging.basicConfig(
 
 def static_to_public():
     logging.info("Starting static_to_public")
-    if os.path.exists("./public"):
-        logging.info("Removing existing ./public directory")
-        shutil.rmtree("./public")
-    logging.info("Creating ./public directory")
-    os.mkdir("./public")
-    recursive_copy("./static", "./public")
+    if os.path.exists("./docs"):
+        logging.info("Removing existing ./docs directory")
+        shutil.rmtree("./docs")
+    logging.info("Creating ./docs directory")
+    os.mkdir("./docs")
+    recursive_copy("./static", "./docs")
     logging.info("Finished static_to_public")
 
 
@@ -32,5 +32,3 @@ def recursive_copy(src_path, dest_path):
             shutil.copy(copy_from, copy_to)
             logging.info("Copying file: %s -> %s", copy_from, copy_to)
     logging.info("Exiting recursive_copy: %s", src_path)
-
-static_to_public()
